@@ -20,7 +20,7 @@ h1 {
     color: #008080;
 }
 section {
-    font-family: 'Noto Serif JP', serif;
+    font-family: 'UD デジタル 教科書体 NK-R';
 }
 section.box p {
     padding: 0.5em;
@@ -218,6 +218,12 @@ words.stream().filter(l -> !l.equals("garbage"))
 ```
 
 - 自分で管理しなければいけない変数は、あくまでデータが入っている age, words のみ。
+
+---
+
+<!-- _class: subtitle -->
+
+## イミュータブルなデータ
 
 ---
 
