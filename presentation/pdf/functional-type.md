@@ -148,7 +148,7 @@ System.out.println(age.stream()
 
 管理変数の削減
 
-イミュータブルなデータ
+イミュータブル
 
 純粋関数
 
@@ -223,7 +223,60 @@ words.stream().filter(l -> !l.equals("garbage"))
 
 <!-- _class: subtitle -->
 
-## イミュータブルなデータ
+## イミュータブル
+
+---
+
+<!-- _class: text -->
+
+## 破壊的なメソッド
+
+- JavaScript での関数の引数は`参照渡し`となるため、破壊的な操作を行った場合は muteble となる。
+
+```javascript
+const addColor = function (add, list) {
+  list.push(add);
+  return list;
+};
+let colors = [{ color: "red" }, { color: "blue" }, { color: "green" }];
+let add = { color: "white" };
+
+console.log(colors);
+addColor(add, colors);
+console.log(colors);
+```
+
+```console
+[ { color: 'red' }, { color: 'blue' }, { color: 'green' } ]
+[ { color: 'red' }, { color: 'blue' }, { color: 'green' }, { color: 'white' } ]
+```
+
+---
+
+<!-- _class: text -->
+
+## Immutable にするには
+
+- push を concat にすることで、破壊的な変更を防ぐことができる。
+
+```javascript
+const addColor = function (add, list) {
+  list.concat(add);
+  return list;
+};
+
+let colors = [{ color: "red" }, { color: "blue" }, { color: "green" }];
+let add = { color: "white" };
+
+console.log(colors);
+addColor(add, colors);
+console.log(colors);
+```
+
+```console
+[ { color: 'red' }, { color: 'blue' }, { color: 'green' } ]
+[ { color: 'red' }, { color: 'blue' }, { color: 'green' } ]
+```
 
 ---
 
