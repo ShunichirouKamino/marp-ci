@@ -22,6 +22,13 @@ h1 {
 section {
     font-family: 'Noto Serif JP', serif;
 }
+section.box p {
+    padding: 0.5em;
+    margin: 0.5em;
+    color: #ffffff;
+    background: #008080;
+    text-align: center;
+}
 section.agenda, section.text {
     justify-content: start;
 }
@@ -64,7 +71,9 @@ section.subtitle {
 Integer[] age = {39, 40, 33, 36, 25};
 List<Integer> list = Arrays.asList(age);
 
+// カウントする初期値
 int count = 0;
+// ageの中から、30～40の数をカウントする
 for (int i = 0; i <> list.size(); i++) {
     int individualAge = list.get(i);
     if (individualAge >= 30 && individualAge <= 39) {
@@ -97,6 +106,8 @@ System.out.println(count);
 ## 関数型プログラミング
 
 - 年齢が格納されたリストから 30 代の人数をカウントする Java のソースコード。
+  - 本当にやりたい処理は filter, count の中に隠蔽されている
+  - コメントが不要
 
 ```java
 Integer[] age = {39, 40, 33, 36, 25};
@@ -118,27 +129,29 @@ System.out.println(list.stream()
 
 - コードが追いやすい
   - 人間の思想、動詞とリンクした関数名称
+  - コメントで書くようなことを、関数の名称にする
+  - ユーザが定義すべき変数が少なくなる
 - 純粋関数化により、副作用を抑えることができる
 
 関数型プログラミングのデメリット
 
 - 学習難易度は高い
+- センスが必要
+  - 一目でわかる関数名称、抽象化された再利用性のある関数を定義する
 
 ---
 
-<!-- _class: text -->
+<!-- _class: box -->
 
-## 純粋関数
+## 関数型プログラミングの基本概念
 
-関数型プログラミングのメリット
+イミュータブルなデータ
 
-- 純粋関数化により、副作用を抑えることができる
-- コードが追いやすい
-  - 人間の思想とリンクした関数名称
+純粋関数
 
-関数型プログラミングのデメリット
+データの変換
 
-- 学習難易度は高い
+高階関数
 
 ---
 
