@@ -61,13 +61,13 @@ section.subtitle {
 - 年齢が格納されたリストから 30 代の人数をカウントする Java のソースコード。
 
 ```java
-Integer[] age = {38, 26, 40, 32, 36};
-List＜Integer＞ list = Arrays.asList(age);
+Integer[] age = {39, 40, 33, 36, 25};
+List<Integer> list = Arrays.asList(age);
 
 int count = 0;
-for (int i = 0; i ＜ list.size(); i++) {
+for (int i = 0; i <> list.size(); i++) {
     int individualAge = list.get(i);
-    if (individualAge ＞= 30 ＆＆ individualAge ＜= 39) {
+    if (individualAge >= 30 && individualAge <= 39) {
         count++;
     }
 System.out.println(count);
@@ -99,11 +99,11 @@ System.out.println(count);
 - 年齢が格納されたリストから 30 代の人数をカウントする Java のソースコード。
 
 ```java
-Integer[] age = {38, 26, 40, 32, 36};
-List＜Integer＞ list = Arrays.asList(age);
+Integer[] age = {39, 40, 33, 36, 25};
+List<Integer> list = Arrays.asList(age);
 
 System.out.println(list.stream()
-                        .filter(x -＞ x ＞= 30 ＆＆ x ＜= 39)
+                        .filter(x -> x >= 30 && x <= 39)
                         .count());
 
 ```
@@ -148,6 +148,23 @@ System.out.println(list.stream()
 
 ---
 
+<!-- _class: text -->
+
+## 豆知識
+
+### ラムダの語源
+
+- 数学における関数の表記
+  - $f(x)=2x+1$
+- ラムダ式を用いた関数の表記
+  - $λx.2x+1$
+
+後者は、プログラミングのラムダ式と近しい表記になっている。
+
+```java
+Function<Integer, Integer> func = x -> 2 * x + 1
 ```
 
-```
+$λ$を使う理由は、$f(x)$という表記ではこれが関数なのか、$x$に関数を適用したものなのか判別できないため。
+
+---
