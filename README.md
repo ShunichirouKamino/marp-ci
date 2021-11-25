@@ -14,7 +14,24 @@
   - [Marp for VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
 
 - Sample
+
   - slide.md
+
+- Font
+  - [Google Fonts](https://fonts.google.com/)
+
+```javascript
+<style>
+  @import
+  url('https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap');
+</style>
+```
+
+```css
+section {
+  font-family: "Noto Serif JP", serif;
+}
+```
 
 ## Other
 

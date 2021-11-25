@@ -10,7 +10,7 @@ footer:
 
 <!-- フォントのimport -->
 <style>
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kosugi&display=swap');
 </style>
 
 <style>
@@ -20,7 +20,7 @@ h1 {
     color: #008080;
 }
 section {
-    font-family: 'UD デジタル 教科書体 NK-R';
+    font-family: 'Kosugi', sans-serif;
 }
 section.box p {
     padding: 0.5em;
