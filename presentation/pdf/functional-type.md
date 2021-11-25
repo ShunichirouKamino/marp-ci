@@ -4,8 +4,8 @@ page_number: true
 theme: default
 paginate: true
 class: lead
-header: header
-footer: footter
+header: 関数型プログラミング
+footer:
 ---
 
 <!-- フォントのimport -->
@@ -48,14 +48,14 @@ section.subtitle {
 
 ## 目次
 
-- 関数型プログラミングとは
-- なぜ今関数型プログラミングか？
+- 関数型プログラミング
+- 純粋関数
 
 ---
 
 <!-- _class: subtitle -->
 
-## 関数型プログラミングとは
+## 関数型プログラミング
 
 ---
 
@@ -65,20 +65,21 @@ section.subtitle {
 
 手続き型プログラミングは、「順に処理を書いていく」プログラミング手法。
 
-- 年齢が格納されたリストから 30 代の人数をカウントする Java のソースコード。
+- 30 ～ 39 の数字の数をカウントする。
 
 ```java
-Integer[] age = {39, 40, 33, 36, 25};
-List<Integer> list = Arrays.asList(age);
+List<Integer> age = Arrays.asList(39, 40, 33, 36, 25);
+
 
 // カウントする初期値
-int count = 0;
+var count = 0;
 // ageの中から、30～40の数をカウントする
-for (int i = 0; i <> list.size(); i++) {
+for (int i = 0; i < list.size(); i++) {
     int individualAge = list.get(i);
     if (individualAge >= 30 && individualAge <= 39) {
         count++;
     }
+}
 System.out.println(count);
 ```
 
@@ -98,6 +99,7 @@ System.out.println(count);
 
 - 再利用がし辛い
 - 現実の物体と紐づかない
+- 処理が長くなると、変数初期化など煩雑になる
 
 ---
 
@@ -105,17 +107,16 @@ System.out.println(count);
 
 ## 関数型プログラミング
 
-- 年齢が格納されたリストから 30 代の人数をカウントする Java のソースコード。
+- 30 ～ 39 の数字の数をカウントする。
   - 本当にやりたい処理は filter, count の中に隠蔽されている
   - コメントが不要
 
 ```java
-Integer[] age = {39, 40, 33, 36, 25};
-List<Integer> list = Arrays.asList(age);
+List<Integer> age = Arrays.asList(39, 40, 33, 36, 25);
 
-System.out.println(list.stream()
-                        .filter(x -> x >= 30 && x <= 39)
-                        .count());
+System.out.println(age.stream()
+                      .filter(x -> x >= 30 && x <= 39)
+                      .count());
 
 ```
 
@@ -130,7 +131,7 @@ System.out.println(list.stream()
 - コードが追いやすい
   - 人間の思想、動詞とリンクした関数名称
   - コメントで書くようなことを、関数の名称にする
-  - ユーザが定義すべき変数が少なくなる
+  - 開発者が定義すべき変数が少なくなる
 - 純粋関数化により、副作用を抑えることができる
 
 関数型プログラミングのデメリット
@@ -145,6 +146,8 @@ System.out.println(list.stream()
 
 ## 関数型プログラミングの基本概念
 
+管理変数の削減
+
 イミュータブルなデータ
 
 純粋関数
@@ -152,6 +155,69 @@ System.out.println(list.stream()
 データの変換
 
 高階関数
+
+---
+
+<!-- _class: subtitle -->
+
+## 管理変数の削減
+
+---
+
+<!-- _class: text -->
+
+## 手続き型プログラミングにおける変数管理
+
+30 ～ 39 の数字の数をカウントし、List から`garbage`を取り除く。
+
+```java
+List<Integer> age = Arrays.asList(39, 40, 33, 36, 25);
+List<String> words = Arrays.asList("a", "b", "a", "garbage", "a");
+
+var count = 0;
+for (int i = 0; i < age.size(); i++) {
+    int individualAge = age.get(i);
+    if (individualAge >= 30 && individualAge <= 39) {
+        count++;
+}
+count = 0;
+for (int i = 0; i < list.size(); i++) {
+    String individualWord = list.get(i);
+    if (!individualWord.equals("garbage")) {
+        count++;
+    }
+}
+```
+
+---
+
+<!-- _class: text -->
+
+- `count` , `i`といった変数を、意識して管理しなければいけない
+  - 初期化したか？再利用時前に再度初期化するのか？
+  - 同一スコープ内で使っていない変数名か？
+
+処理が複雑になり、変数が増えれば増えるほどデメリットになる。
+
+---
+
+<!-- _class: text -->
+
+## 関数型プログラミングにおける変数管理
+
+30 ～ 39 の数字の数をカウントし、List から`garbage`を取り除く。
+
+```java
+List<Integer> age = Arrays.asList(39, 40, 33, 36, 25);
+List<String> words = Arrays.asList("a", "b", "a", "garbage", "a");
+
+age.stream().filter(x -> x >= 30 && x <= 39)
+            .count());
+words.stream().filter(l -> !l.equals("garbage"))
+              .count();
+```
+
+- 自分で管理しなければいけない変数は、あくまでデータが入っている age, words のみ。
 
 ---
 
