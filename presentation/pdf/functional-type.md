@@ -36,26 +36,36 @@ section.subtitle {
     font-size: 50px;
     color: #008080;
 }
+section.subsubtitle p {
+    padding: 0.25em 0.5em;
+    font-size: 35px;
+    color: #008080;
+    border-top: solid 5px #008080;
+    border-bottom: solid 5px #008080;
+}
 </style>
 
 <!-- _class: title -->
 
-# 関数型プログラミングを理解する
+# 関数型プログラミングの考察
 
 ---
 
-<!-- _class: agenda -->
+<!-- _class: box -->
 
 ## 目次
 
-- 関数型プログラミング
-- 純粋関数
+関数型プログラミングとは？
+
+なぜ関数型プログラミングが必要なのか？
+
+実際どこで利用するのか？
 
 ---
 
 <!-- _class: subtitle -->
 
-## 関数型プログラミング
+## 関数型プログラミングとは？
 
 ---
 
@@ -69,7 +79,6 @@ section.subtitle {
 
 ```java
 List<Integer> age = Arrays.asList(39, 40, 33, 36, 25);
-
 
 // カウントする初期値
 var count = 0;
@@ -117,12 +126,11 @@ List<Integer> age = Arrays.asList(39, 40, 33, 36, 25);
 System.out.println(age.stream()
                       .filter(x -> x >= 30 && x <= 39)
                       .count());
-
 ```
 
----
-
 <!-- _class: text -->
+
+---
 
 ## 関数型プログラミング
 
@@ -142,31 +150,9 @@ System.out.println(age.stream()
 
 ---
 
-<!-- _class: box -->
-
-## 関数型プログラミングの基本概念
-
-管理変数の削減
-
-イミュータブル
-
-純粋関数
-
-データの変換
-
-高階関数
-
----
-
-<!-- _class: subtitle -->
-
-## 管理変数の削減
-
----
-
 <!-- _class: text -->
 
-## 手続き型プログラミングにおける変数管理
+## 変数管理（手続き型プログラミング）
 
 30 ～ 39 の数字の数をカウントし、List から`garbage`を取り除く。
 
@@ -203,7 +189,7 @@ for (int i = 0; i < list.size(); i++) {
 
 <!-- _class: text -->
 
-## 関数型プログラミングにおける変数管理
+## 変数管理（関数型プログラミング）
 
 30 ～ 39 の数字の数をカウントし、List から`garbage`を取り除く。
 
@@ -221,9 +207,42 @@ words.stream().filter(l -> !l.equals("garbage"))
 
 ---
 
-<!-- _class: subtitle -->
+<!-- _class: box -->
 
-## イミュータブル
+## 関数型プログラミングの基本概念
+
+イミュータブル
+
+純粋関数
+
+高階関数
+
+---
+
+<!-- _class: subsubtitle -->
+
+イミュータブル
+
+---
+
+<!-- _class: text -->
+
+#### イミュータブルとは？
+
+- ⇒ 変異しないこと
+
+#### いつ変異しないの？
+
+- ⇒ 関数に引数として渡した時
+
+#### なぜ関数型プログラミングに重要なの？
+
+- ⇒ 処理を関数に隠ぺいして抽象化することで、ルールが必要
+- ⇒ 都度関数の中を追って何をしているか見るのは手間
+
+#### その他何かある？
+
+- ⇒ 直接渡しの言語で特に気を付ける。Java は参照渡し、JavaScript は直接渡し
 
 ---
 
@@ -277,6 +296,56 @@ console.log(colors);
 [ { color: 'red' }, { color: 'blue' }, { color: 'green' } ]
 [ { color: 'red' }, { color: 'blue' }, { color: 'green' } ]
 ```
+
+---
+
+<!-- _class: subsubtitle -->
+
+純粋関数
+
+---
+
+<!-- _class: text -->
+
+#### 純粋関数とは？
+
+- ⇒ 関数は、少なくとも一つの引数を受け取らなければいけない
+- ⇒ 関数は、値もしくは他の関数を戻り値として返却しなければならない
+- ⇒ 関数は、引数・引数外のスコープの変数に直接変更を加えてはいけない
+
+#### なぜ関数型プログラミングに重要なの？
+
+- ⇒ 関数外のアプリケーションに影響を与えることを「副作用」と言い、副作用が有る関数は関数型プログラミングには適していない
+
+#### その他何かある？
+
+- ⇒ 副作用が無いことは、テストが簡単になることと同義
+- ⇒ React コンポーネントは全て純粋関数
+
+---
+
+<!-- _class: text -->
+
+## 純粋関数の例
+
+- Welcome は、`<h1>Hello, {arg}</h1>`を表示する関数コンポーネント
+- 引数として props を受け取り、関数スコープ外の変数に影響は与えない
+- 値を戻り値として返却する
+
+```typescript
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const element = <Welcome name="Sara" />;
+ReactDOM.render(element, document.getElementById("root"));
+```
+
+---
+
+<!-- _class: subsubtitle -->
+
+データの変換
 
 ---
 
