@@ -15,7 +15,7 @@ footer:
 
 <style>
 h1 {
-    font-size: 70px;
+    font-size: 53px;
     font-weight: bold;
     color: #008080;
 }
@@ -47,7 +47,7 @@ section.subsubtitle p {
 
 <!-- _class: title -->
 
-# 関数型プログラミング
+# なんとなく「ラムダ式を使え」はもうやめよう
 
 ---
 
@@ -73,11 +73,81 @@ section.subsubtitle p {
 
 ## 目次
 
+ラムダ式とは？
+
 関数型プログラミングとは？
 
 なぜ関数型プログラミングが必要なのか？
 
 実際どこで利用するのか？
+
+---
+
+<!-- _class: subtitle -->
+
+## ラムダ式とは？
+
+---
+
+<!-- _class: text -->
+
+## ラムダ式とは
+
+- メソッドを変数として扱う技術
+- 関数型プログラミングを構築する代表的な要素
+- 関数型インターフェースの実装（Java においては）
+
+例）引数を 2 倍して、1 加算するラムダ式
+
+```java
+Function<Integer, Integer> func = x -> 2 * x + 1
+```
+
+---
+
+<!-- _class: text -->
+
+## 豆知識
+
+### ラムダの語源
+
+- 数学における関数の表記
+  - $f(x)=2x+1$
+- ラムダ式を用いた関数の表記
+  - $λx.2x+1$
+
+後者は、プログラミングのラムダ式と近しい表記になっている。
+
+```java
+Function<Integer, Integer> func = x -> 2 * x + 1
+```
+
+$λ$を使う理由は、$f(x)$という表記ではこれが関数なのか、$x$に関数を適用したものなのか判別できないため。
+
+---
+
+<!-- _class: text -->
+
+## ラムダ式
+
+手続き型プログラミングは、「順に処理を書いていく」プログラミング手法。
+
+- 30 ～ 39 の数字の数をカウントする。
+
+```java
+List<Integer> age = Arrays.asList(39, 40, 33, 36, 25);
+
+// カウントする初期値
+var count = 0;
+// ageの中から、30～40の数をカウントする
+for (int i = 0; i < list.size(); i++) {
+    int individualAge = list.get(i);
+    if (individualAge >= 30 && individualAge <= 39) {
+        count++;
+    }
+}
+System.out.println(count);
+```
 
 ---
 
@@ -434,26 +504,5 @@ var result = numbers.stream()
 <!-- _class: subtitle -->
 
 ## なぜ今関数型プログラミングか？
-
----
-
-<!-- _class: text -->
-
-## 豆知識
-
-### ラムダの語源
-
-- 数学における関数の表記
-  - $f(x)=2x+1$
-- ラムダ式を用いた関数の表記
-  - $λx.2x+1$
-
-後者は、プログラミングのラムダ式と近しい表記になっている。
-
-```java
-Function<Integer, Integer> func = x -> 2 * x + 1
-```
-
-$λ$を使う理由は、$f(x)$という表記ではこれが関数なのか、$x$に関数を適用したものなのか判別できないため。
 
 ---
