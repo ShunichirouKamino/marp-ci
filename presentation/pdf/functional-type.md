@@ -47,7 +47,7 @@ section.subsubtitle p {
 
 <!-- _class: title -->
 
-# 関数型プログラミングの考察
+# 関数型プログラミング
 
 ---
 
@@ -231,9 +231,9 @@ words.stream().filter(l -> !l.equals("garbage"))
 
 - ⇒ 変異しないこと
 
-#### いつ変異しないの？
+#### 何が、いつ変異しないの？
 
-- ⇒ 関数に引数として渡した時
+- ⇒ 関数に与えた引数が、関数の実行後も値が変異しない
 
 #### なぜ関数型プログラミングに重要なの？
 
@@ -250,7 +250,7 @@ words.stream().filter(l -> !l.equals("garbage"))
 
 ## 破壊的なメソッド
 
-- JavaScript での関数の引数は`参照渡し`となるため、破壊的な操作を行った場合は muteble となる。
+- JavaScript での関数の引数は`参照渡し`となるため、破壊的な操作（ここでは`push`）を行った場合は muteble となる。
 
 ```javascript
 const addColor = function (add, list) {
@@ -346,6 +346,44 @@ ReactDOM.render(element, document.getElementById("root"));
 <!-- _class: subsubtitle -->
 
 データの変換
+
+---
+
+<!-- _class: subsubtitle -->
+
+高階関数
+
+---
+
+<!-- _class: text -->
+
+#### 高階関数とは？
+
+- 他の関数を引数に取る（コールバック関数）
+- 戻り値として関数を返す
+- もしくは上記両方
+
+---
+
+<!-- _class: text -->
+
+## 関数を引数に取る例
+
+- よく登場するのは、map, filter, reduce
+
+```java
+var numbers = List.of(18, 4, 22, 7, 31, 1, 12, 25, 36, 3);
+
+// 奇数を3乗して足す
+var result = numbers.stream()
+  .filter(number -> number % 2 != 0) // 奇数の抽出
+  .map(number -> number * number * number) // 三乗する
+  .reduce(0, Integer::sum); // 初期値0として、配列の前後要素を足す
+```
+
+```console
+> 45787
+```
 
 ---
 
