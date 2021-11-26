@@ -53,6 +53,24 @@ section.subsubtitle p {
 
 <!-- _class: box -->
 
+何となく、「ラムダ式を使え」と言っていないですか？
+
+適切な箇所で関数型プログラミングができていますか？
+
+---
+
+<!-- _class: text -->
+
+## ゴール
+
+- 関数型プログラミングがざっくりと分かり、必要な理由が説明できる
+- コードレビューをする際に、何となく「ラムダ式を使え」ではなく、「こういった理由でここは関数型にすべき」という指摘ができる
+- 自身が実装する際に、関数型の使いどころが分かる
+
+---
+
+<!-- _class: box -->
+
 ## 目次
 
 関数型プログラミングとは？
@@ -372,17 +390,43 @@ ReactDOM.render(element, document.getElementById("root"));
 - よく登場するのは、map, filter, reduce
 
 ```java
-var numbers = List.of(18, 4, 22, 7, 31, 1, 12, 25, 36, 3);
+var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 // 奇数を3乗して足す
 var result = numbers.stream()
   .filter(number -> number % 2 != 0) // 奇数の抽出
-  .map(number -> number * number * number) // 三乗する
-  .reduce(0, Integer::sum); // 初期値0として、配列の前後要素を足す
+  .map(number -> number * number) // 二乗する
+  .reduce(0, (x, y) -> x + y); // 初期値0として、配列の前後要素を足す
 ```
 
 ```console
-> 45787
+> 165
+```
+
+---
+
+<!-- _class: text -->
+
+## 関数を引数に取る例
+
+- さらに関数型プログラミングっぽくした例
+  - Java8 より導入された`Functional Interface`（後述）を利用する
+
+```java
+var numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+Function<Integer, Integer> toSquare = x -> x * x;
+Predicate<Integer> isOdd = x -> x % 2 != 0;
+
+// 奇数を3乗して足す
+var result = numbers.stream()
+  .filter(isOdd)
+  .map(toSquare)
+  .reduce(0, Integer::sum);
+```
+
+```console
+> 165
 ```
 
 ---
