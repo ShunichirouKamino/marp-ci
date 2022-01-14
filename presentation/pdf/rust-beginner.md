@@ -352,7 +352,7 @@ fn f() {
         name: String::from("taro"),
         age: 27,
     };
-    println!("{:?}", taro);
+    println!("{:?}", taro); // Person { name: "taro", age: 27 }
 }
 ```
 
@@ -376,7 +376,7 @@ fn f() {
     let v4 = IpAddrKind::V4;
     let v6 = IpAddrKind::V6;
 
-    println!("{:?}, {:?}", v4, v6);
+    println!("{:?}, {:?}", v4, v6); // V4, V6
 }
 ```
 
@@ -400,6 +400,32 @@ pub enum Action {
         position: usize,
     },
     List,
+}
+```
+
+---
+
+<!-- _class: text -->
+
+### Rust はリッチな型システムがあります
+
+- trait
+  - 共通の振る舞いを定義します。struct に付与することで、クラスのような振る舞いが可能です。
+
+```rust
+struct Person {
+    name: String,
+    age: u8,
+}
+
+pub trait Judge {
+    fn isOver30(&self) -> bool;
+}
+
+impl Judge for Person {
+    fn isOver30(&self) -> bool {
+        self.age > 30
+    }
 }
 ```
 
