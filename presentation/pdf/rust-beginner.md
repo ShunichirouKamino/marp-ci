@@ -337,6 +337,51 @@ Rust はリッチな型システムがあります
 
 ### Rust はリッチな型システムがあります
 
+- struct
+  - 直積型です。C 言語でいう構造体と同じです。メソッドの無い class のイメージです。
+
+```rust
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+
+fn f() {
+    let taro = Person {
+        name: String::from("taro"),
+        age: 27,
+    };
+    println!("{:?}", taro);
+}
+
+```
+
+---
+
+<!-- _class: text -->
+
+### Rust はリッチな型システムがあります
+
+- enum
+  - 列挙型です。Java の Enum と同じです。
+
+```rust
+#[derive(Debug)]
+enum IpAddrKind {
+    V4,
+    V6,
+}
+
+fn f() {
+    let v4 = IpAddrKind::V4;
+    let v6 = IpAddrKind::V6;
+
+    println!("{:?}, {:?}", v4, v6);
+}
+
+```
+
 ---
 
 <!-- _class: subsubtitle -->
