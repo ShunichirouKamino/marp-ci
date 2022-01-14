@@ -354,7 +354,6 @@ fn f() {
     };
     println!("{:?}", taro);
 }
-
 ```
 
 ---
@@ -379,7 +378,29 @@ fn f() {
 
     println!("{:?}, {:?}", v4, v6);
 }
+```
 
+---
+
+<!-- _class: text -->
+
+### Rust はリッチな型システムがあります
+
+- 直和型
+  - 取りうるすべての型の羅列です。TypeScript では`a = number | string`のように表現され、Java では Java17 以降、`sealed`構文と`record`構文により実現されます。
+
+```rust
+/// Actionは、ToDoリストにおけるアクションを示す直和型です。
+/// 複数のstructの列挙型で表現され、AddにもDoneにもListにもなれます。
+pub enum Action {
+    Add {
+        text: String,
+    },
+    Done {
+        position: usize,
+    },
+    List,
+}
 ```
 
 ---
