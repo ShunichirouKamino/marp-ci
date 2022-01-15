@@ -431,6 +431,54 @@ impl Judge for Person {
 
 ---
 
+<!-- _class: text -->
+
+### 型システムが豊富なことは何が素晴らしいのか？
+
+例えば Java では列挙型に対して、以下の制約が有ります。
+
+- 変数が持てない
+- 列挙値毎に定数の数は固定
+
+```java
+enum IpAddr {
+    V4("127.0.0.1"),
+    V6("::1"),
+
+    private final String loopBack;
+
+    public String getLoopBack(){
+        return this.loopBack;
+    }
+}
+```
+
+---
+
+<!-- _class: text -->
+
+### 型システムが豊富なことは何が素晴らしいのか？
+
+Rust では、以下のように列挙値をそれぞれ別の型で表現できます。（直和型）
+この仕様により、ドメイン知識を実装する幅が広がります。
+
+```rust
+enum IpAddr {
+    V4 (u8, u8, u8, u8), // 8byte整数値を4つ持つ
+    V6 { loopBack: String }, // Stringを1つもつstruct
+}
+
+fn f() {
+    let v4LoopBack = IpAddr::V4(127, 0, 0, 1);
+    let v6LoopBack = IpAddr::V6 {
+        ip: "::1".to_string(),
+    };
+    println!("{:?}, {:?}", v4LoopBack, v6LoopBack); // V4(127, 0, 0, 1), V6 { ip: "::1" }
+}
+```
+
+---
+
 <!-- _class: subsubtitle -->
 
 Rust の難しいところ
@@ -442,6 +490,10 @@ Rust の難しいところ
 Rust は、学習コストが高いです
 
 Rust は、オブジェクト指向言語ではありません
+
+```
+
+```
 
 ```
 
