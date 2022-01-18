@@ -573,6 +573,31 @@ Java におけるエラー処理の課題は？
 
 ---
 
+<!-- _class: text -->
+
+### Rust はエラー処理が分かりやすい
+
+- C 言語 におけるエラー処理
+  - 検査例外の Exception により、上位レイヤでキャッチします。
+  - 上位のモジュールでは、`try-catch`の記載が必須となります。
+
+```java
+public void any() {
+    try {
+        final var file = open("../input/input.json");
+        // 何らかの処理
+    } catch (IOException ex) {
+        throw ex;
+    }
+}
+
+public File open(String fileName) throws IOException {
+    return new File(fileName);
+}
+```
+
+---
+
 <!-- _class: subsubtitle -->
 
 Rust の難しいところ
