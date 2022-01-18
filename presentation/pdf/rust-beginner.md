@@ -172,7 +172,7 @@ Rust はメモリ安全な言語です
 
 Rust はリッチな型システムがあります
 
-Rust は関数型言語の仕組みを多く取り入れています
+Rust はエラー処理が分かりやすい
 
 Rust は健全なコミュニティの有るエコシステムです
 
@@ -507,33 +507,69 @@ fn f() {
 
 <!-- _class: subsubtitle -->
 
-Rust は関数型言語の仕組みを多く取り入れています
+Rust はエラー処理が分かりやすい
 
 ---
 
 <!-- _class: text -->
 
-### Rust は関数型言語の仕組みを多く取り入れています
+### Rust はエラー処理が分かりやすい
 
-- trait
-  - 共通の振る舞いを定義します。struct に付与することで、クラスのような振る舞いが可能です。
+- Java におけるエラー処理
+  - 検査例外の Exception により、上位レイヤでキャッチします。
+  - 上位のモジュールでは、`try-catch`の記載が必須となります。
 
-```rust
-struct Person {
-    name: String,
-    age: u8,
+```java
+public void any() {
+    try {
+        final var file = open("../input/input.json");
+        // 何らかの処理
+    } catch (IOException ex) {
+        throw ex;
+    }
 }
 
-pub trait Judge {
-    fn isOver30(&self) -> bool;
+public File open(String fileName) throws IOException {
+    return new File(fileName);
+}
+```
+
+---
+
+<!-- _class: text -->
+
+### Rust はエラー処理が分かりやすい
+
+- Java におけるエラー処理
+  - 非検査例外の Exception により、Runtime 時の Exception を定義します。
+    - `NullPointerException`, `ArrayIndexOutOfBoundsException`等
+  - 上位のモジュールでは、`try-catch`の記載が任意となります。
+
+```java
+public void any() {
+    final var file = open("../input/input.json");
 }
 
-impl Judge for Person {
-    fn isOver30(&self) -> bool {
-        self.age > 30
+public InputStream open(String fileName) {
+    try {
+        return new FileInputStream(fileName);
+    } catch (final FileNotFoundException e) {
+        throw new UncheckedIOException(e);
     }
 }
 ```
+
+---
+
+<!-- _class: text -->
+
+### Rust はエラー処理が分かりやすい
+
+Java におけるエラー処理の課題は？
+
+- 検査例外と非検査例外の使い分けとしては、検査例外は、「呼び出し側で発生を避けられないもの」です。しかし境界が曖昧で、例えば`NullPointerException`は非検査例外（呼び出し側で発生を避けられるもの）の定義ですが、実際は実行するまで見逃されることがほとんどです。
+- 結果として、大原則である「Exception を握りつぶしてはいけない」について、実装時に見逃すことになります。上記の例で非検査例外である`NullPointerException`は、コンパイル時に検査できません。
+- Exception の実装が、他の Class の実装と異なるためある程度学習コストがかかります。実際に Java を書いている人でも、Exception を何となく実装したり、Exception そのものの実装をしたことが無い人がほとんどではないでしょうか。
 
 ---
 
