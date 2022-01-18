@@ -577,24 +577,30 @@ Java におけるエラー処理の課題は？
 
 ### Rust はエラー処理が分かりやすい
 
-- C 言語 におけるエラー処理
-  - 検査例外の Exception により、上位レイヤでキャッチします。
-  - 上位のモジュールでは、`try-catch`の記載が必須となります。
+- VBA におけるエラー処理
+  - VBA や C 言語のような例外機構が存在しない言語では、GoTo にてエラーハンドリングを行うことがあります。
 
-```java
-public void any() {
-    try {
-        final var file = open("../input/input.json");
-        // 何らかの処理
-    } catch (IOException ex) {
-        throw ex;
-    }
-}
-
-public File open(String fileName) throws IOException {
-    return new File(fileName);
-}
+```vb
+Sub 実行()
+    On Error GoTo Catch ' エラーが発生したら Catch の行へ処理を飛ばす
+    Dim i As Integer
+    i = "a"  ' エラー発生
+    Exit Sub ' 正常に処理が行われたときに Catch: の処理を行わないように、ここで関数を抜ける
+    Catch:
+    ' エラー処理
+End Sub
 ```
+
+---
+
+<!-- _class: text -->
+
+### Rust はエラー処理が分かりやすい
+
+VBA におけるエラー処理の課題は？
+
+- GoTo 文は、何よりも先に解析されるため、非常に強力な構文です。結果として、処理がどこに飛ぶか分からないスパゲッティコードが生まれる原因となります。故に、GoTo 文を禁止する案件も少なくありません。
+- そうはいっても、書き換えて関数呼び出しのネストが深い処理になってしまう場合や、メモリのクローズ忘れを防ぐ等、有用なシーンでの共通処理を定義しておくことができるため、完全には無くならないのが現状です。
 
 ---
 
