@@ -435,7 +435,7 @@ impl Judge for Person {
 
 ### 型システムが豊富なことは何が素晴らしいのか？
 
-例えば Java では列挙型に対して、以下の制約が有ります。
+ドメイン知識を実装する幅が広がります。例えば Java では列挙型に対して、以下の制約が有ります。
 
 - 変数が持てない
 - 列挙値毎に定数の数は固定
@@ -464,7 +464,7 @@ Rust では、以下のように列挙値をそれぞれ別の型で表現でき
 
 ```rust
 enum IpAddr {
-    V4 (u8, u8, u8, u8), // 8byte整数値を4つ持つ
+    V4 (u8, u8, u8, u8), // 8byte整数値を4つ持つタプル
     V6 { loopBack: String }, // Stringを1つもつstruct
 }
 
@@ -474,6 +474,64 @@ fn f() {
         ip: "::1".to_string(),
     };
     println!("{:?}, {:?}", v4LoopBack, v6LoopBack); // V4(127, 0, 0, 1), V6 { ip: "::1" }
+}
+```
+
+---
+
+<!-- _class: text -->
+
+### 型システムが豊富なことは何が素晴らしいのか？
+
+パターンマッチングによる分岐処理が簡潔に書けます。
+
+```rust
+pub enum Action {
+    Add {text: String, }, // 文字列変数を保持する構造体
+    Done {position: usize, },  // usize型の数値変数を保持する構造体
+    List,  // 列挙定数のみ
+}
+
+fn f() {
+    let action = XXX::from_args(); // コマンドラインから何らかの値を取得
+
+    match action {
+        Add { text } => ..., // 文字列の場合の処理
+        List => ... , // 何も指定されなかった場合の処理
+        Done { position } => ... , // 数値の場合の処理
+};
+
+```
+
+---
+
+<!-- _class: subsubtitle -->
+
+Rust は関数型言語の仕組みを多く取り入れています
+
+---
+
+<!-- _class: text -->
+
+### Rust は関数型言語の仕組みを多く取り入れています
+
+- trait
+  - 共通の振る舞いを定義します。struct に付与することで、クラスのような振る舞いが可能です。
+
+```rust
+struct Person {
+    name: String,
+    age: u8,
+}
+
+pub trait Judge {
+    fn isOver30(&self) -> bool;
+}
+
+impl Judge for Person {
+    fn isOver30(&self) -> bool {
+        self.age > 30
+    }
 }
 ```
 
