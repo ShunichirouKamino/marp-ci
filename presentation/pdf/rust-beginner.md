@@ -4,7 +4,7 @@ page_number: true
 theme: default
 paginate: true
 class: lead
-header: Rust-Buginner
+header: 苦しんで覚えるRust
 footer:
 ---
 
@@ -47,7 +47,18 @@ section.subsubtitle p {
 
 <!-- _class: title -->
 
-# Rust Beginner
+# 苦しんで覚える Rust
+
+---
+
+<!-- _class: text -->
+
+## はじめに
+
+- 正月休み付近で、なんとなく Rust を触り始めたらハマりました。
+- 今後流行る予感がしてるので、この 3 週間で学んだことを共有します。
+- 当スライドのタイトルは、名著「[苦しんで覚える C 言語](https://www.amazon.co.jp/dp/B07H2WH1F4/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)」から拝借しました。
+- 当スライドは、[marp](https://github.com/marp-team/marp) で作っており、凝ったデザインではありません。見苦しかったらごめんなさい。[このリポジトリ](https://github.com/ShunichirouKamino/marp-ci)でビルドしてるので興味ある人は Fork してください。
 
 ---
 
@@ -55,9 +66,9 @@ section.subsubtitle p {
 
 ## ゴール
 
+- なんとなく Rust の良さがわかる。
+- なんとなく Rust の難しさが分かる。
 - Rust で`Hello World!`ができるようになる。
-- なんとなく Rust の面白さがわかる。
-- なんとなく Rust のむずかしさが分かる。
 
 ---
 
@@ -66,7 +77,6 @@ section.subsubtitle p {
 ## 目次
 
 - とりあえず Hello World をやってみよう！
-- なぜ Rust を学ぶべきか？
 - Rust が流行りそうな理由
 - ソースコードを読んでみよう
 
@@ -156,7 +166,7 @@ You win!
 
 <!-- _class: subtitle -->
 
-## なぜ Rust を学ぶべきか？
+## Rust が流行りそうな理由
 
 ---
 
@@ -708,6 +718,22 @@ pub fn any() -> Result<String> {
 
 ---
 
+<!-- _class: text -->
+
+### Rust におけるエラー処理は何がうれしいのか？（まとめ）
+
+- 検査例外と非検査例外の定義がはっきりしており、実装時に一目で分かる。
+- エラーようの型が定まっていることで返り値にエラーを含むため、修復すべきエラーの握り潰しが発生しづらい。
+- GoTo によるスパゲッティコードを産まず、保守性の高いコードが書ける。
+
+---
+
+<!-- _class: subsubtitle -->
+
+Rust は健全なコミュニティの有るエコシステムです
+
+---
+
 <!-- _class: subsubtitle -->
 
 Rust の難しいところ
@@ -719,14 +745,6 @@ Rust の難しいところ
 Rust は、学習コストが高いです
 
 Rust は、オブジェクト指向言語ではありません
-
-```
-
-```
-
-```
-
-```
 
 ```
 
