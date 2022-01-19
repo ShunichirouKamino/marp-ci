@@ -58,7 +58,7 @@ section.subsubtitle p {
 - 正月休み付近で、なんとなく Rust を触り始めたらハマりました。
 - 今後流行る予感がしてるので、この 3 週間で学んだことを共有します。
 - 当スライドのタイトルは、名著「[苦しんで覚える C 言語](https://www.amazon.co.jp/dp/B07H2WH1F4/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)」から拝借しました。
-- 当スライドは、[marp](https://github.com/marp-team/marp) で作っており、凝ったデザインではありません。見苦しかったらごめんなさい。[このリポジトリ](https://github.com/ShunichirouKamino/marp-ci)でビルドしてるので興味ある人は Fork してください。
+- 当スライドは、プレゼンテーションよりもナレッジの共有の意味合いが強く、凝ったデザインではありません。そのため[marp](https://github.com/marp-team/marp) で作りました、見苦しかったらごめんなさい。[このリポジトリ](https://github.com/ShunichirouKamino/marp-ci)でビルドしてるので興味ある人は Fork してください。
 
 ---
 
@@ -116,7 +116,7 @@ section.subsubtitle p {
   - VSCode
 
 - 手順
-  - `$ git clone https://github.com/ShunichirouKamino/rust-graphql.git -b main rust-graphql`完了後、VSCode でプロジェクトルートを開く
+  - `$ git clone https://github.com/ShunichirouKamino/rust-sandbox.git -b main rust-sandbox`完了後、VSCode でプロジェクトルートを開く
   - `Extensions`の`RECOMMENDED`にある`Remote - Containers`を install
   - VSCode 左下の緑の部分(`Open a Remote Winndow`)をクリックすることで、自動でリモートコンテナ上で VSCode を開く
     - 初回はビルドに多少時間がかかる
@@ -678,7 +678,7 @@ pub fn any() -> Result<String> {
 
 `?`によるシンタックスシュガーが用意されており、`Result`を返す関数を複数呼び出しても、簡潔に記載することができます。
 
-- `?`の役割は、「パターンマッチングを行ったうえで、Ok なら処理が進み、NG なら return する」という意味です。
+- `?`の役割は、「パターンマッチングを行ったうえで、`Ok` なら処理が進み、`Err` なら return する」という意味です。
 
 ```rust
 fn add_task_from_file(file_name: String) -> Result<String, io::Error> {
@@ -731,6 +731,32 @@ pub fn any() -> Result<String> {
 <!-- _class: subsubtitle -->
 
 Rust は健全なコミュニティの有るエコシステムです
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
+エコシステムは、一つの OSS を中心として、それを取り巻く生態系のことを指します。
+
+- コンテナエコシステムで言うと、ランタイムは Docker や cri-o や Railcar 等が存在し、オーケストレーションでは k8s や Docker Compose、SaaS では ECS・EKS・GKE、今では Argo や Istio, velero 等の CRD もエコシステムに含まれます。
+- Java のエコシステムでいうと、Maven や Gradle のビルドツールや、フレームワークである Spring boot, helidon, Quarkus、IDE や関連では Eclipse Foundation が有名で、AdoptOpenJDK が寄贈されたことも最近話題になりました。
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
+Rust では、以下のようなエコシステムが有ります。
+
+- コンパイラ
+  - `rustc`でコンパイルができます。Java における`javac`や C 言語における`gcc main.c -o main`のようなものです。
+- ビルドツール・パッケージマネージャ
+  - `Cargo`により、プロジェクトのビルドからパッケージマネージまで全て行ってくれます。また依存ライブラリのダウンロードや、テスト、ドキュメント生成等も可能な便利ツールです。
+- ツールチェーン管理
+  - `rustup`により、これまで登場した`rustc`や`cargo`等のツール群を一式インストールしてくれます。また、`rust-analyzer`や`rust-fmt`、`rls`、`clippy`といったツールを管理します。
 
 ---
 
