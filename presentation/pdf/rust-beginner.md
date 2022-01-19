@@ -671,14 +671,38 @@ pub fn any() -> Result<String> {
 - `?`の役割は、「パターンマッチングを行ったうえで、Ok なら処理が進み、NG なら return する」という意味です。
 
 ```rust
-fn read_username_from_file() -> Result<String, io::Error> {
-    let mut f = File::open("task.txt")?; // Resultが返却される関数
+fn add_task_from_file(file_name: String) -> Result<String, io::Error> {
+    let mut f = File::open(file_name)?; // Resultが返却される関数
     let mut s = String::new();
 
     f.read_to_string(&mut s)?; // Resultが返却される関数
     add_task(s)?; // Resultが返却される関数
 
     Ok(s) // 最後に評価された式が返り値になり、returnの省略が可能
+}
+```
+
+---
+
+<!-- _class: text -->
+
+### Rust はエラー処理が分かりやすい
+
+最終的に回復が不要と判断し、非検査例外とする場合は`panic!`を発生させるだけです。
+
+```rust
+pub fn add_task(task: String) -> Result<String> {
+    // タスクの追加処理
+}
+
+pub fn any() -> Result<String> {
+    let ret = match add_task("new task") {
+        Ok(ret) => ret,
+        Err(e) => {
+            panic!("Tried to add task: {:?}", e)
+        }
+    };
+    // retを使った処理
 }
 ```
 
