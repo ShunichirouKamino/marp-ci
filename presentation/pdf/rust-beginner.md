@@ -749,6 +749,19 @@ Rust は健全なコミュニティの有るエコシステムです
 
 ### Rust は健全なコミュニティの有るエコシステムです
 
+この先の説明で登場する用語について、いくつか事前に解説します。
+
+- LSP
+  - language server protocol です。エディタや IDE が保有するソースを解析し、静的解析やフォーマット、自動補間などを行うバックエンドサービスとのプロトコルです。1 つの解析用 Language Server を実装することで、複数の IDE やエディタから利用されることが可能になりました。Microsoft さんが 2016 年に公開し、VSCode の発展に大きく寄与しています。
+- Crate
+  - クレートと読みます。Rust における 1 つのプロジェクト単位を指し、ライブラリでも有ります。`bin`形式と`lib`形式が有り、自作したライブラリは[crates.io](https://crates.io/)にて公開することができます。
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
 Rust では、以下のようなエコシステムが有ります。
 
 - コンパイラ
@@ -766,7 +779,49 @@ Rust では、以下のようなエコシステムが有ります。
 
 - `rls`を導入すると、マウスオーバーで定義の参照が可能になります。
 
-![image](img/rust-beginner/rust-rls1.gif)
+![image](img/rust-beginner/rust-rls1.png)
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
+- `rls`を導入すると、参照先のインライン表示が可能になります。
+
+![image](img/rust-beginner/rust-rls2.png)
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
+- `rls`を導入すると、フォーマッタが利用できるようになります。
+
+![image](img/rust-beginner/rust-rls3.png)
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
+- `rls`を導入すると、エラー箇所の静的解析を行ってくれます。
+
+![image](img/rust-beginner/rust-rls4.png)
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
+その他エコシステム
+
+- [microsoft/vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/rust)によりリモートコンテナ用の Image が提供されており、VSCode での環境構築が簡単にできます。
+
+- [crates.io](https://crates.io/)により、ライブラリの公開が可能です。[npm](https://www.npmjs.com/)のようなものです。
 
 ---
 
