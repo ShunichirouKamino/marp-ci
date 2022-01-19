@@ -638,6 +638,52 @@ fn main() {
 
 ---
 
+<!-- _class: text -->
+
+### Rust はエラー処理が分かりやすい
+
+`Result`と`Option`が列挙型で実装されているということは、パターンマッチングの記法が使えます。
+
+- `Result`は 2 つのジェネリクス定義が必要ですが、ほとんどの場合利用 Crate 内でラップされており、返り値側のみ指定すれば良いことがほとんどです。
+
+```rust
+pub fn add_task(task: String) -> Result<String> {
+    // タスクの追加処理
+}
+
+pub fn any() -> Result<String> {
+    let ret = match add_task("new task") {
+        Ok(ret) => ret,
+        Err(e) => return Err(e),
+    };
+    // retを使った処理
+}
+```
+
+---
+
+<!-- _class: text -->
+
+### Rust はエラー処理が分かりやすい
+
+`?`によるシンタックスシュガーが用意されており、`Result`を返す関数を複数呼び出しても、簡潔に記載することができます。
+
+- `?`の役割は、「パターンマッチングを行ったうえで、Ok なら処理が進み、NG なら return する」という意味です。
+
+```rust
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut f = File::open("task.txt")?; // Resultが返却される関数
+    let mut s = String::new();
+
+    f.read_to_string(&mut s)?; // Resultが返却される関数
+    add_task(s)?; // Resultが返却される関数
+
+    Ok(s) // 最後に評価された式が返り値になり、returnの省略が可能
+}
+```
+
+---
+
 <!-- _class: subsubtitle -->
 
 Rust の難しいところ
