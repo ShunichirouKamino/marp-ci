@@ -58,7 +58,7 @@ section.subsubtitle p {
 - 正月休み付近で、なんとなく Rust を触り始めたらハマりました。
 - 今後流行る予感がしてるので、この 3 週間で学んだことを共有します。
 - 当スライドのタイトルは、名著「[苦しんで覚える C 言語](https://www.amazon.co.jp/dp/B07H2WH1F4/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)」から拝借しました。
-- 当スライドは、プレゼンテーションよりもナレッジの共有の意味合いが強く、凝ったデザインではありません。そのため[marp](https://github.com/marp-team/marp) で作りました、見苦しかったらごめんなさい。[このリポジトリ](https://github.com/ShunichirouKamino/marp-ci)でビルドしてるので興味ある人は Fork してください。
+- 当スライドは、プレゼンテーションよりもナレッジの共有の意味合いが強く、凝ったデザインではありません。そのため[marp](https://github.com/marp-team/marp) で作りました、見苦しかったらごめんなさい。`https://github.com/ShunichirouKamino/marp-ci`でビルドしてるので、興味ある人は Fork してください。
 
 ---
 
@@ -119,7 +119,7 @@ section.subsubtitle p {
   - `$ git clone https://github.com/ShunichirouKamino/rust-sandbox.git -b main rust-sandbox`完了後、VSCode でプロジェクトルートを開く
   - `Extensions`の`RECOMMENDED`にある`Remote - Containers`を install
   - VSCode 左下の緑の部分(`Open a Remote Winndow`)をクリックすることで、自動でリモートコンテナ上で VSCode を開く
-    - 初回はビルドに多少時間がかかる
+    - 初回はコンテナのビルドに多少時間がかかります
 
 ---
 
