@@ -79,6 +79,7 @@ section.subsubtitle p {
 - とりあえず Hello World をやってみよう！
 - Rust が流行りそうな理由
 - ソースコードを読んでみよう
+  - ⇒ 執筆中
 
 ---
 
@@ -112,14 +113,14 @@ section.subsubtitle p {
 
 - 事前準備
 
-  - Docker Desktop
-  - VSCode
+  - Docker Desktop, VSCode
 
 - 手順
   - `$ git clone https://github.com/ShunichirouKamino/rust-sandbox.git -b main rust-sandbox`完了後、VSCode でプロジェクトルートを開く
   - `Extensions`の`RECOMMENDED`にある`Remote - Containers`を install
-  - VSCode 左下の緑の部分(`Open a Remote Winndow`)をクリックすることで、自動でリモートコンテナ上で VSCode を開く
+  - VSCode 左下の緑の部分(`Open a Remote Window`)をクリックすることで、自動でリモートコンテナ上で VSCode を開く
     - 初回はコンテナのビルドに多少時間がかかります
+    - コマンドパレットが開いた場合は、`Reopen in Container`を選択します
 
 ---
 
@@ -510,7 +511,6 @@ fn f() {
         List => ... , // 何も指定されなかった場合の処理
         Done { position } => ... , // 数値の場合の処理
 };
-
 ```
 
 ---
@@ -738,7 +738,7 @@ Rust は健全なコミュニティの有るエコシステムです
 
 ### Rust は健全なコミュニティの有るエコシステムです
 
-エコシステムは、一つの OSS を中心として、それを取り巻く生態系のことを指します。
+エコシステムは、一つの OSS を中心として、それを取り巻く生態系のことを指します。エコシステムの発達度と言語の発展は、少なからず依存関係が有ります。
 
 - コンテナエコシステムで言うと、ランタイムは Docker や cri-o や Railcar 等が存在し、オーケストレーションでは k8s や Docker Compose、SaaS では ECS・EKS・GKE、今では Argo や Istio, velero 等の CRD もエコシステムに含まれます。
 - Java のエコシステムでいうと、Maven や Gradle のビルドツールや、フレームワークである Spring boot, helidon, Quarkus、IDE や関連では Eclipse Foundation が有名で、AdoptOpenJDK が寄贈されたことも最近話題になりました。
@@ -825,18 +825,12 @@ Rust では、以下のようなエコシステムが有ります。
 
 ---
 
-<!-- _class: subsubtitle -->
+<!-- _class: text -->
 
-Rust の難しいところ
+### Rust は健全なコミュニティの有るエコシステムです
 
----
+その他エコシステム
 
-<!-- _class: box -->
+- [microsoft/vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/rust)によりリモートコンテナ用の Image が提供されており、VSCode での環境構築が簡単にできます。
 
-Rust は、学習コストが高いです
-
-Rust は、オブジェクト指向言語ではありません
-
-```
-
-```
+- [crates.io](https://crates.io/)により、ライブラリの公開が可能です。[npm](https://www.npmjs.com/)のようなものです。
