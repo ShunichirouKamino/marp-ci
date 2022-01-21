@@ -904,3 +904,29 @@ fn parse() -> Result<i32, ParseIntError> {
 ```
 
 - よく見るのは返り値 Result に対して、最後が Ok で終わる関数です。
+
+---
+
+<!-- _class: text -->
+
+### ソースコードを読んでみよう！
+
+- **if let**
+  - デストラクチャリング（分割代入）と if 演算が同時に行われ、その後の処理の有無が決定します。
+
+```rust
+enum Foo {
+    GRID { x: f64, y: f64 }
+    POINT { x: f64 }
+}
+
+fn main() {
+    let g = Foo::GRID {x: 0.1, y: 0.2};
+    if let Foo::GRID {x, y} = g { // デストラクチャリングにより、分割代入が行われる
+        println!("{}, {}", x, y); // 分割代入が成功した場合のみ、0.1, 0.2が出力
+    }
+    if let FOO::POINT {x, y} = g {  // POINTにgは代入できない
+        println!("{}, {}", x, y); // ここの分岐には到達しない
+    }
+}
+```
