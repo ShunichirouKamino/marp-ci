@@ -79,7 +79,6 @@ section.subsubtitle p {
 - とりあえず Hello World をやってみよう！
 - Rust が流行りそうな理由
 - ソースコードを読んでみよう
-  - ⇒ 執筆中
 
 ---
 
@@ -148,7 +147,7 @@ section.subsubtitle p {
 - `$ cd guessing_game`
 - `$ cargo run`
 
-```bash
+```sh
     Finished dev [unoptimized + debuginfo] target(s) in 0.18s
      Running `target/debug/guessing_game`
 Guess the number!
@@ -834,3 +833,74 @@ Rust では、以下のようなエコシステムが有ります。
 - [microsoft/vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/rust)によりリモートコンテナ用の Image が提供されており、VSCode での環境構築が簡単にできます。
 
 - [crates.io](https://crates.io/)により、ライブラリの公開が可能です。[npm](https://www.npmjs.com/)のようなものです。
+
+---
+
+<!-- _class: text -->
+
+### Rust は健全なコミュニティの有るエコシステムです
+
+その他エコシステム
+
+- [microsoft/vscode-dev-containers](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/rust)によりリモートコンテナ用の Image が提供されており、VSCode での環境構築が簡単にできます。
+
+- [crates.io](https://crates.io/)により、ライブラリの公開が可能です。[npm](https://www.npmjs.com/)のようなものです。
+
+---
+
+<!-- _class: subtitle -->
+
+## ソースコードを読んでみよう！
+
+---
+
+<!-- _class: text -->
+
+### ソースコードを読んでみよう！
+
+これまで Rust のいいところのみを淡々と語ってきましたが、Rust は学習コストが高いと言われています。
+ここから個人的にハマった構文や、その他言語とは異なる構文について淡々と説明します。
+
+---
+
+<!-- _class: text -->
+
+### ソースコードを読んでみよう！
+
+- **Hello, world で登場するエクスクラメーションマーク**
+  - メタプログラミングの文脈で登場する、マクロという構文です。
+  - 関数と使い方が似ていますが。一言でいうと、プログラムをプログラミングする為の構文です。
+  - 関数と違い、引数を可変数取ることが可能です。
+
+```rust
+fn main() {
+    let x = "Hello, world";
+    println!("Hello, world");
+    println!("{}", x);
+}
+```
+
+- マクロの使い方を学ぶだけなら簡単ですが、マクロを自作したり、マクロの中身を理解しようとすると飛躍的に難易度が上がります。
+
+---
+
+<!-- _class: text -->
+
+### ソースコードを読んでみよう！
+
+- **返り値があるのに return が無い関数**
+  - Rust では、最後の式で評価された値が戻り値になります。
+  - 『式』は値を返し、『文』は値を返しません。
+  - 式には`;`が不要で、よく見ると最後の節は式になっています。
+
+```rust
+fn parse() -> Result<i32, ParseIntError> {
+    let number = match "10".parse::<i32>() {
+        Ok(number) => number,
+        Err(e) => return Err(e),
+    };
+    Ok(number)
+}
+```
+
+- よく見るのは返り値 Result に対して、最後が Ok で終わる関数です。
