@@ -269,7 +269,7 @@ fn get_length(s: String) -> usize {
 }
 
 fn f() {
-    let s = "hello";
+    let s = "hello".to_string();
     let len = get_length(s);
     // ここではsにアクセスすることはできない
 }
@@ -286,7 +286,7 @@ fn f() {
 
 ```rust
 fn f() {
-    let s = "hello";
+    let s = "hello".to_string();
     let s2 = s;
     // ここではsにアクセスすることはできない
 }
@@ -307,7 +307,7 @@ fn get_length(s: String) -> usize {
 }
 
 fn f() {
-    let s = "hello";
+    let s = "hello".to_string();
     let s2 = &s;
     // sにアクセスすることが可能
     let len = get_length(&s);
