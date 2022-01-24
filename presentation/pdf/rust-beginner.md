@@ -966,7 +966,6 @@ fn main() {
 - いくつかの言語を網羅的に学んでいると、共通点などからキャッチアップが早くなります。Rust の例だと、C 言語界隈からの`struct`や、JavaScript からの`デストラクチャリング`がそれにあたります。
 - Java で直和型が使えるようになって喜んでましたが、Rust ではデフォルトで利用できます。直和型は業務ドメインを実装に落とす際にとても便利なので、今後は多用したいです。Java における直和型は、手前味噌ですがこちらを参照ください。`https://zenn.dev/khale/articles/java-17-tips#%E4%BB%A3%E6%95%B0%E7%9A%84%E3%83%87%E3%83%BC%E3%82%BF%E5%9E%8B`
 - 上半期の目標は、m5 の認証サーバーを Rust で実装しようかなと思います。GraphQL でやってみるかもしれません。
-- 最後に`ToDoアプリ`を作ったので、デモをします。
 
 ---
 
@@ -975,3 +974,16 @@ fn main() {
 ## 課題
 
 - Rust では型システムが豊富ですが、オブジェクトを表す本体は struct のみです。つまり継承ができません。trait にて継承を無理やり実装するか、struct 内に struct を保持する合成を利用するやり方が有り、ベストな方法を探り中です。
+- struct の vec に対して、各要素に対して処理をしたい際に map では read-only となるためどのように実装すべきか。
+
+---
+
+<!-- _class: text -->
+
+## おわりに
+
+- 最後にいくつかアプリを作ったので、デモをします。
+  - ToDo アプリ
+    - https://github.com/ShunichirouKamino/rust-sandbox/tree/main/todo_app
+  - 割り勘アプリ
+    - https://github.com/ShunichirouKamino/rust-sandbox/tree/main/detch_treat
